@@ -1,0 +1,53 @@
+name: 'GitHub Checks'
+description: 'Wrapper around the GitHub Checks API'
+author: 'Louis Brunner'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  repo:
+    description: 'the target `owner/repo` to manage the check run on (defaults to the current repository'
+    required: false
+  sha:
+    description: 'the target commit''s SHA (defaults to the current commit)'
+    required: false
+  token:
+    description: 'your GITHUB_TOKEN'
+    required: true
+  name:
+    description: 'the name of the check to create (incompatible with `check_id`)'
+    required: false
+  check_id:
+    description: 'ID of the check to update (incompatible with `name`)'
+    required: false
+  conclusion:
+    description: 'the conclusion of your check'
+    required: false
+  status:
+    description: 'the status of your check'
+    required: false
+    default: completed
+  action_url:
+    description: 'the url to call back to when using `action_required` as conclusion or with `actions`'
+    required: false
+  details_url:
+    description: 'a URL with more details about your check, will be overriden by `action_url` depending on context'
+    required: false
+  output:
+    description: 'the output of your check'
+    required: false
+  annotations:
+    description: 'the annotations of your check'
+    required: false
+  images:
+    description: 'the images of your check'
+    required: false
+  actions:
+    description: 'the actions of your check'
+    required: false
+outputs:
+  check_id:
+    description: 'the ID of the created check, useful to update it in another action'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
